@@ -29,6 +29,7 @@ Bundle "kchmck/vim-coffee-script"
 Bundle "hail2u/vim-css3-syntax"
 Bundle "othree/html5.vim"
 Bundle "ap/vim-css-color"
+Bundle "msanders/snipmate.vim"
 
 Bundle 'Lokaltog/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
