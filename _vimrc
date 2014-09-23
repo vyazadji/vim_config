@@ -5,13 +5,13 @@ let mapleader = ","
 
 set nocompatible
 
-filetype off  "обязательно!
+filetype off  
 
 set rtp+=$VIMRUNTIME/../vimfiles/bundle/vundle/
 
 call vundle#rc()
 
-filetype plugin indent on     " обязательно!
+filetype plugin indent on
 
 
 Bundle "gmarik/Vundle.vim"
@@ -130,10 +130,10 @@ endif " has("autocmd")
 
 au GUIEnter * simalt ~x
 
-"Что б при запуске не писалось про детей уганды :) можно сделать так:
+"Don't show message about children
 set shortmess+=I 
 
-"В режиме вставки подсвечивать текущую строку 
+"Highlight current line in insert mode
 autocmd InsertEnter * set cursorline "cursorcolumn
 autocmd InsertLeave * set nocursorline
 
@@ -145,13 +145,13 @@ set noswapfile
 
 set statusline=%f\ %y%m%r%<[%{&encoding}]%<[%{&fileformat}]%<[%{strftime(\"%d.%m.%y\",getftime(expand(\"%:p\")))}]%k%=%-14.(%l,%c%V%)\ %P
 
-" Не выгружать буфер, когда переключаемся на другой" Это позволяет редактировать несколько файлов в один и тот же момент без необходимости сохранения каждый раз" когда переключаешься между ними
+" don't unload buffer when leave current tab
 set hidden
 
-" что бы вим при выходе сохранял больше информации
+" save more info when exit 
 :set viminfo='1000,f1,<500,:100,@100,/100
 
-"отключаем тулбарчик(инструментальную панель) 
+" disable toolbar panel 
 set guioptions=maeirL
 
 
@@ -181,11 +181,11 @@ imap ,s <esc>,sa
 " exit vim without saving any changes
 map ,q :qa!<CR>
 
-"Поиск и замена слова под курсором
+" show and replace world under cursor 
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 vmap // y/<C-R>"<CR> " search for visually higlightes text
 
-"Быстрое перемещение между окнами
+"quick move between windows
 :map <c-j> <c-w>j
 :imap <c-j> <esc><c-j>
 :map <c-k> <c-w>k
@@ -194,12 +194,8 @@ map <c-_> <c-w>_
 map <c-=> <c-w>=
 imap <c-=> <esc><c-=>
 
-" Выключаем надоедливый "звонок"
+"  disable speaker 
 "set novisualbell
 set vb t_vb= 
 
 " ----------------------------- /GENERAL BUTTONS MAPPING ----------------------
-"
-" ----------------------------- PLUGINS BUTTONS MAPPING ----------------------
-"
-" ----------------------------- /PLUGINS BUTTONS MAPPING ----------------------
