@@ -35,8 +35,8 @@ Bundle "msanders/snipmate.vim"
 
 Bundle 'Lokaltog/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
+"nmap s <Plug>(easymotion-s2)
+"nmap t <Plug>(easymotion-t2)
 
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
@@ -131,7 +131,9 @@ else
 
 endif " has("autocmd")
 
-au GUIEnter * simalt ~x
+if MySys() == 0 "use this options only for Windows
+  au GUIEnter * simalt ~x
+endif
 
 "Don't show message about children
 set shortmess+=I 
