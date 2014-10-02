@@ -11,27 +11,25 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 
-call vundle#rc()
-
-filetype plugin indent on
+call vundle#begin()
 
 
-Plugin "gmarik/Vundle.vim"
-Plugin "tpope/vim-rails"
-Plugin "tpope/vim-markdown"
-Plugin "tpope/vim-haml"
-Plugin "tpope/vim-fugitive"
-Plugin "tpope/vim-endwise"
-Plugin "tpope/vim-bundler"
-Plugin "tpope/vim-surround"
-Plugin "tpope/vim-cucumber"
-Plugin "tpope/vim-repeat"
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-repeat'
 Plugin 'vim-ruby/vim-ruby'
-Plugin "kchmck/vim-coffee-script"
-Plugin "hail2u/vim-css3-syntax"
-Plugin "othree/html5.vim"
-Plugin "ap/vim-css-color"
-Plugin "msanders/snipmate.vim"
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'othree/html5.vim'
+Plugin 'ap/vim-css-color'
+Plugin 'msanders/snipmate.vim'
 
 Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
@@ -59,16 +57,22 @@ Plugin 'vim-scripts/The-NERD-Commenter'
 :map <C-\> ,ci
 
 
-Plugin "altercation/vim-colors-solarized"
+Plugin 'altercation/vim-colors-solarized'
 set background=dark 
 "set background=light
-colorscheme solarized
 
-Plugin "kien/ctrlp.vim"
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"Plugin 'kien/ctrlp.vim'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+colorscheme solarized
 
 "-------------------- /VUNDLE ---------------------
 
