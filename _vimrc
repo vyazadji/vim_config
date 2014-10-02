@@ -61,12 +61,56 @@ Plugin 'altercation/vim-colors-solarized'
 set background=dark 
 "set background=light
 
+"-------- search
 "Plugin 'kien/ctrlp.vim'
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
 "set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+"recent files
+nnoremap <silent> <Leader>m :Unite -buffer-name=recent -winheight=10 file_mru<cr>  
+"buffers
+nnoremap <Leader>b :Unite -buffer-name=buffers -winheight=10 buffer<cr> 
+
+"greep
+nnoremap <space>/ :Unite  -default-action=split grep:.<cr> 
+
+
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files file_rec<CR> " find file
+
+
+" CtrlP search
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#source('file_rec/async','sorters','sorter_rank')
+" replacing unite with ctrl-p
+nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async -default-action=split<cr>
+
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+" CtrlP search
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#sorter_default#use(['sorter_rank'])
+"call unite#custom#source('file_rec/async','sorters','sorter_rank')
+" replacing unite with ctrl-p
+"nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 <cr>
+
+
+"-------- /search
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
