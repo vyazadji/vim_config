@@ -16,24 +16,27 @@ call vundle#rc()
 filetype plugin indent on
 
 
-Bundle "gmarik/Vundle.vim"
-Bundle "tpope/vim-rails"
-Bundle "tpope/vim-markdown"
-Bundle "tpope/vim-haml"
-Bundle "tpope/vim-fugitive"
-Bundle "tpope/vim-endwise"
-Bundle "tpope/vim-bundler"
-Bundle "tpope/vim-surround"
-Bundle "tpope/vim-cucumber"
-Bundle "tpope/vim-repeat"
-Bundle 'vim-ruby/vim-ruby'
-Bundle "kchmck/vim-coffee-script"
-Bundle "hail2u/vim-css3-syntax"
-Bundle "othree/html5.vim"
-Bundle "ap/vim-css-color"
-Bundle "msanders/snipmate.vim"
+Plugin "gmarik/Vundle.vim"
+Plugin "tpope/vim-rails"
+Plugin "tpope/vim-markdown"
+Plugin "tpope/vim-haml"
+Plugin "tpope/vim-fugitive"
+Plugin "tpope/vim-endwise"
+Plugin "tpope/vim-bundler"
+Plugin "tpope/vim-surround"
+Plugin "tpope/vim-cucumber"
+Plugin "tpope/vim-repeat"
+Plugin 'vim-ruby/vim-ruby'
+Plugin "kchmck/vim-coffee-script"
+Plugin "hail2u/vim-css3-syntax"
+Plugin "othree/html5.vim"
+Plugin "ap/vim-css-color"
+Plugin "msanders/snipmate.vim"
 
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'bling/vim-airline'
+let g:airline_detect_whitespace=0
+
+Plugin 'Lokaltog/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
 "nmap s <Plug>(easymotion-s2)
 "nmap t <Plug>(easymotion-t2)
@@ -52,16 +55,16 @@ map <Leader>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_smartcase = 1
 
 "comments
-Bundle 'vim-scripts/The-NERD-Commenter'
+Plugin 'vim-scripts/The-NERD-Commenter'
 :map <C-\> ,ci
 
 
-Bundle "altercation/vim-colors-solarized"
+Plugin "altercation/vim-colors-solarized"
 set background=dark 
 "set background=light
 colorscheme solarized
 
-Bundle "kien/ctrlp.vim"
+Plugin "kien/ctrlp.vim"
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -85,6 +88,7 @@ set incsearch		" do incremental searching
 set ignorecase
 set smartcase
 
+set laststatus=2
 
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
@@ -148,10 +152,11 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-set statusline=%f\ %y%m%r%<[%{&encoding}]%<[%{&fileformat}]%<[%{strftime(\"%d.%m.%y\",getftime(expand(\"%:p\")))}]%k%=%-14.(%l,%c%V%)\ %P
+"set statusline=%f\ %y%m%r%<[%{&encoding}]%<[%{&fileformat}]%<[%{strftime(\"%d.%m.%y\",getftime(expand(\"%:p\")))}]%k%=%-14.(%l,%c%V%)\ %P
 
 " don't unload buffer when leave current tab
 set hidden
+
 
 " save more info when exit 
 :set viminfo='1000,f1,<500,:100,@100,/100
