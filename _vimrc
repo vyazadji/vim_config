@@ -7,7 +7,9 @@ set nocompatible
 
 filetype off  
 
-set rtp+=$VIMRUNTIME/../vimfiles/bundle/vundle/
+"set rtp+=$VIMRUNTIME/../vimfiles/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
+
 
 call vundle#rc()
 
