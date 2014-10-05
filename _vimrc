@@ -183,8 +183,8 @@ else
 
 endif " has("autocmd")
 
-if MySys() == 0 "use this options only for Windows
-  au GUIEnter * simalt ~x
+if has("win32")
+  au GUIEnter * simalt ~x  "use this options only for Windows
 endif
 
 "Don't show message about children
