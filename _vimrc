@@ -62,6 +62,7 @@ set background=dark
 "set background=light
 
 "-------- search
+
 "Plugin 'kien/ctrlp.vim'
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
@@ -78,11 +79,6 @@ nnoremap <Leader>b :Unite -buffer-name=buffers -winheight=10 buffer<cr>
 
 "greep
 nnoremap <space>/ :Unite  -default-action=split grep:.<cr> 
-
-
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files file_rec<CR> " find file
-
 
 " CtrlP search
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -101,14 +97,6 @@ function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
-
-" CtrlP search
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#filters#sorter_default#use(['sorter_rank'])
-"call unite#custom#source('file_rec/async','sorters','sorter_rank')
-" replacing unite with ctrl-p
-"nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 <cr>
-
 
 "-------- /search
 
@@ -183,7 +171,7 @@ else
 
 endif " has("autocmd")
 
-if has("win32")
+has('win32') || has('win64')
   au GUIEnter * simalt ~x  "use this options only for Windows
 endif
 
