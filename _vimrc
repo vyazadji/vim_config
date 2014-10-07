@@ -18,7 +18,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
@@ -31,6 +30,23 @@ Plugin 'othree/html5.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'msanders/snipmate.vim'
 
+
+Plugin 'tpope/vim-fugitive'
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gr :Gremove<CR>
+
+
+Plugin 'gregsexton/gitv'
+nnoremap <silent> <leader>gv :Gitv<CR>
+nnoremap <silent> <leader>gV :Gitv!<CR>
+
+
 Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
 
@@ -39,16 +55,16 @@ map <Leader> <Plug>(easymotion-prefix)
 "nmap s <Plug>(easymotion-s2)
 "nmap t <Plug>(easymotion-t2)
 
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+"map  / <Plug>(easymotion-sn)
+"omap / <Plug>(easymotion-tn)
 
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+"map  n <Plug>(easymotion-next)
+"map  N <Plug>(easymotion-prev)
 
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+"map <Leader>l <Plug>(easymotion-lineforward)
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
+"map <Leader>h <Plug>(easymotion-linebackward)
 
 let g:EasyMotion_smartcase = 1
 
@@ -58,16 +74,34 @@ Plugin 'vim-scripts/The-NERD-Commenter'
 
 
 Plugin 'altercation/vim-colors-solarized'
-set background=dark 
-"set background=light
+if has('gui_running')
+  "set background=light
+  set background=dark 
+else
+  set background=dark 
+  let g:solarized_termcolors=256
+  let g:solarized_termtrans = 1
+endif
 
 "-------- search
 
-"Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+
+
+
+Plugin 'mileszs/ack.vim'
+" :LAck the word under the cursor recursively and open the location list.
+nnoremap <Leader>a :silent LAck <C-r><C-w><CR>
+vnoremap <Leader>a "zy:silent LAck '<C-r>z'<CR>
+" Location list navigation.
+nnoremap ]w :lnext<CR>
+nnoremap [w :lprevious<CR>
+
 
 "-------- /search
 
@@ -96,6 +130,11 @@ set ignorecase
 set smartcase
 
 set laststatus=2
+
+set tabstop=4
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
@@ -173,6 +212,11 @@ set guioptions=maeirL
 
 
 "highlight Normal guibg=#FFFFA0 
+
+
+"Vim can highlight whitespaces for you in a convenient way:
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " ----------------------------- /VIM SETTINGS --------------------------------
 
