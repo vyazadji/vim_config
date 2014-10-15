@@ -94,8 +94,8 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 Plugin 'mileszs/ack.vim'
 " :LAck the word under the cursor recursively and open the location list.
-nnoremap <Leader>a :sp<CR> Ack <C-r><C-w><CR>
-vnoremap <Leader>a "zy:sp<CR> Ack '<C-r>z'<CR>
+nnoremap <Leader>a :sp<CR> :Ack <C-r><C-w><CR>
+vnoremap <Leader>a "zy:sp<CR> :Ack '<C-r>z'<CR>
 " Location list navigation.
 nnoremap ]w :lnext<CR>
 nnoremap [w :lprevious<CR>
