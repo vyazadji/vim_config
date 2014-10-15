@@ -5,7 +5,7 @@ let mapleader = ","
 
 set nocompatible
 
-filetype off  
+filetype off
 
 "set rtp+=$VIMRUNTIME/../vimfiles/bundle/vundle/
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -92,16 +92,15 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
-
-
 Plugin 'mileszs/ack.vim'
 " :LAck the word under the cursor recursively and open the location list.
-nnoremap <Leader>a :silent LAck <C-r><C-w><CR>
-vnoremap <Leader>a "zy:silent LAck '<C-r>z'<CR>
+nnoremap <Leader>a :sp<CR> Ack <C-r><C-w><CR>
+vnoremap <Leader>a "zy:sp<CR> Ack '<C-r>z'<CR>
 " Location list navigation.
 nnoremap ]w :lnext<CR>
 nnoremap [w :lprevious<CR>
 
+Plugin 'ntpeters/vim-better-whitespace'
 
 "-------- /search
 
