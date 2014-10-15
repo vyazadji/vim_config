@@ -239,7 +239,7 @@ map <S-Insert>		"+gP
 map ,s :w<CR>
 imap ,s <esc>,sa
 " exit vim without saving any changes
-map ,q :qa!<CR>
+map ,q :q!<CR>
 
 " show and replace world under cursor 
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
