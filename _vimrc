@@ -223,6 +223,9 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "Autoread will suppress the prompt when file was changed
 set autoread
 
+#Always autosave everything
+:au FocusLost * silent! wa
+
 
 " ----------------------------- /VIM SETTINGS --------------------------------
 
