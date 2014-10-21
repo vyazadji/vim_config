@@ -76,9 +76,9 @@ Plugin 'vim-scripts/The-NERD-Commenter'
 Plugin 'altercation/vim-colors-solarized'
 if has('gui_running')
   "set background=light
-  set background=dark 
+  set background=dark
 else
-  set background=dark 
+  set background=dark
   let g:solarized_termcolors=256
   let g:solarized_termtrans = 1
 endif
@@ -188,7 +188,7 @@ if has('win32') || has('win64')
 endif
 
 "Don't show message about children
-set shortmess+=I 
+set shortmess+=I
 
 "Highlight current line in insert mode
 autocmd InsertEnter * set cursorline "cursorcolumn
@@ -206,14 +206,14 @@ set noswapfile
 set hidden
 
 
-" save more info when exit 
+" save more info when exit
 :set viminfo='1000,f1,<500,:100,@100,/100
 
-" disable toolbar panel 
+" disable toolbar panel
 set guioptions=maeirL
 
 
-"highlight Normal guibg=#FFFFA0 
+"highlight Normal guibg=#FFFFA0
 
 
 "Vim can highlight whitespaces for you in a convenient way:
@@ -251,7 +251,7 @@ imap ,s <esc>,sa
 " exit vim without saving any changes
 map ,q :q!<CR>
 
-" show and replace world under cursor 
+" show and replace world under cursor
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 vmap // y/<C-R>"<CR> " search for visually higlightes text
 
@@ -264,8 +264,8 @@ map <c-_> <c-w>_
 map <c-=> <c-w>=
 imap <c-=> <esc><c-=>
 
-"  disable speaker 
+"  disable speaker
 "set novisualbell
-set vb t_vb= 
+set vb t_vb=
 
 " ----------------------------- /GENERAL BUTTONS MAPPING ----------------------
