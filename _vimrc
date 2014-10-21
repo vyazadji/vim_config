@@ -105,11 +105,20 @@ nnoremap [w :lprevious<CR>
 
 Plugin 'ntpeters/vim-better-whitespace'
 
+
+
+Plugin 'scrooloose/syntastic'
+
 "-------- /search
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+
+
+
+
 
 colorscheme solarized
 
@@ -223,7 +232,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "Autoread will suppress the prompt when file was changed
 set autoread
 
-#Always autosave everything
+"Always autosave everything
 :au FocusLost * silent! wa
 
 
