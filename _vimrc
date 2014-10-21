@@ -29,6 +29,8 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'msanders/snipmate.vim'
+Plugin 'tmhedberg/matchit'
+Plugin 'Raimondi/delimitMate'
 
 
 Plugin 'tpope/vim-fugitive'
