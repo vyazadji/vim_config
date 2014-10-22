@@ -33,6 +33,12 @@ Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
 
 
+Plugin '907th/vim-auto-save'
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode"
+let g:auto_save_silent = 1  " do not display the auto-save notification
+
+
 Plugin 'tpope/vim-fugitive'
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -235,7 +241,9 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set autoread
 
 "Always autosave everything
-:au FocusLost * silent! wa
+":au FocusLost * silent! wa
+"set autowrite
+"set autowriteall
 
 
 " ----------------------------- /VIM SETTINGS --------------------------------
