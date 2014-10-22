@@ -116,6 +116,16 @@ Plugin 'ntpeters/vim-better-whitespace'
 
 
 Plugin 'scrooloose/syntastic'
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+"highlight SyntasticWarning guibg=#ff9100
+highlight SyntasticError guibg=#ff0000
+
+
+
+
+
 
 "-------- /search
 
