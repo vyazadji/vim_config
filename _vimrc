@@ -55,6 +55,9 @@ nnoremap <silent> <leader>gv :Gitv<CR>
 nnoremap <silent> <leader>gV :Gitv!<CR>
 
 
+Plugin 'jisaacks/GitGutter'
+
+
 Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
 
@@ -98,23 +101,49 @@ vnoremap <Leader>a "zy:sp<CR> :Ack '<C-r>z'<CR>
 nnoremap ]w :lnext<CR>
 nnoremap [w :lprevious<CR>
 
-Plugin 'ntpeters/vim-better-whitespace'
 
+
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+nnoremap <silent> <Leader>ur :Unite -buffer-name=recent -winheight=10 file_mru<cr>
+nnoremap <Leader>ub :Unite -buffer-name=buffers -winheight=10 buffer<cr>
+nnoremap <Leader>us :Unite grep:.<cr>
+let g:unite_source_rec_async_command = 'ack -f --nofilter'
+if executable('ack')
+    let g:unite_source_grep_command = 'ack'
+    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -k -H'
+    let g:unite_source_grep_recursive_opt = ''
+endif
+
+
+"-------- /search
 
 
 Plugin 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 1
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
-"highlight SyntasticWarning guibg=#ff9100
+highlight SyntasticWarning guibg=#ff9100
 highlight SyntasticError guibg=#ff0000
 
 
 
 
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'terryma/vim-multiple-cursors'
 
 
-"-------- /search
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'ervandew/supertab'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-projectionist'
+
+
+
+Plugin 'vim-misc'
+Plugin 'xolox/vim-session'
+:let g:session_autosave = 'yes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -261,11 +290,15 @@ map <C-V>		"+gP
 imap <C-V>		<c-r>+
 map <S-Insert>		"+gP
 
+:imap jj <Esc>
+
 " save changes
 map ,s :w<CR>
 imap ,s <esc>,sa
 " exit vim without saving any changes
 map ,q :q!<CR>
+
+map ,t :tabnew<CR>
 
 " show and replace world under cursor
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
@@ -276,6 +309,10 @@ vmap // y/<C-R>"<CR> " search for visually higlightes text
 :imap <c-j> <esc><c-j>
 :map <c-k> <c-w>k
 :imap <c-k> <esc><c-k>
+:map <c-h> <c-w>h
+:imap <c-h> <esc><c-h>
+:map <c-l> <c-w>l
+:imap <c-l> <esc><c-l>
 map <c-_> <c-w>_
 map <c-=> <c-w>=
 imap <c-=> <esc><c-=>
@@ -284,4 +321,22 @@ imap <c-=> <esc><c-=>
 "set novisualbell
 set vb t_vb=
 
+" Maps for mac Command key (use instead of Control
+map <D-d> <C-d>
+map <D-u> <C-u>
+:nnoremap <D-o> <C-o>
+
+:map <D-\> <C-\>
+
+:map <D-j> <c-w>j
+:imap <D-j> <esc><c-j>
+:map <D-k> <c-w>k
+:imap <D-k> <esc><c-k>
+map <D-_> <c-w>_
+map <D-=> <c-w>=
+imap <D-=> <esc><c-=>
+
+map <D-V> "+gP
+imap <D-V> <c-r>+
 " ----------------------------- /GENERAL BUTTONS MAPPING ----------------------
+"
