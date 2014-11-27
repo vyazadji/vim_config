@@ -51,11 +51,9 @@ nnoremap <silent> <leader>gr :Gremove<CR>
 
 
 Plugin 'gregsexton/gitv'
+Plugin 'jisaacks/GitGutter'
 nnoremap <silent> <leader>gv :Gitv<CR>
 nnoremap <silent> <leader>gV :Gitv!<CR>
-
-
-Plugin 'jisaacks/GitGutter'
 
 
 Plugin 'bling/vim-airline'
@@ -73,8 +71,8 @@ Plugin 'vim-scripts/The-NERD-Commenter'
 
 Plugin 'altercation/vim-colors-solarized'
 if has('gui_running')
-  "set background=light
-  set background=dark
+  set background=light
+  "set background=dark
 else
   set background=dark
   let g:solarized_termcolors=256
@@ -89,7 +87,10 @@ let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_max_files=0
-
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+nnoremap <Leader>f :CtrlP<CR>
+nnoremap <Leader>fb :CtrlPBuffer<CR>
+nnoremap <Leader>fr :CtrlPMRU<CR>
 
 
 
@@ -107,11 +108,12 @@ Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 nnoremap <silent> <Leader>ur :Unite -buffer-name=recent -winheight=10 file_mru<cr>
 nnoremap <Leader>ub :Unite -buffer-name=buffers -winheight=10 buffer<cr>
-nnoremap <Leader>us :Unite grep:.<cr>
+nnoremap <Leader>us :Unite grep:.<CR><C-r><C-w><cr>
+vnoremap <Leader>us "zy:Unite grep:.<CR><C-r>z<cr>
 let g:unite_source_rec_async_command = 'ack -f --nofilter'
 if executable('ack')
     let g:unite_source_grep_command = 'ack'
-    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -k -H'
+    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -k -H -Q'
     let g:unite_source_grep_recursive_opt = ''
 endif
 
@@ -133,17 +135,23 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-multiple-cursors'
 
 
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'ervandew/supertab'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'ervandew/supertab'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-projectionist'
-
+nnoremap <Leader>n :NERDTree<cr>
+nnoremap <Leader>nf :NERDTreeFind<cr>
+nnoremap <Leader>nb :Bookmark<cr>
 
 
 Plugin 'vim-misc'
 Plugin 'xolox/vim-session'
 :let g:session_autosave = 'yes'
+:let g:session_autoload = 'no'
+let g:session_autosave_periodic = 10
+let g:session_default_to_last = 1
+nnoremap <Leader>ss :SaveSession 
+nnoremap <Leader>so :OpenSession 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
