@@ -71,8 +71,7 @@ Plugin 'vim-scripts/The-NERD-Commenter'
 
 Plugin 'altercation/vim-colors-solarized'
 if has('gui_running')
-  set background=light
-  "set background=dark
+  set background=dark
 else
   set background=dark
   let g:solarized_termcolors=256
