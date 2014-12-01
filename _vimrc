@@ -38,6 +38,14 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode"
 let g:auto_save_silent = 1  " do not display the auto-save notification
 
+Plugin 'altercation/vim-colors-solarized'
+if has('gui_running')
+  set background=dark
+else
+  set background=dark
+  let g:solarized_termcolors=256
+  let g:solarized_termtrans = 1
+endif
 
 Plugin 'tpope/vim-fugitive'
 nnoremap <silent> <leader>gs :Gstatus<CR>
@@ -51,9 +59,16 @@ nnoremap <silent> <leader>gr :Gremove<CR>
 
 
 Plugin 'gregsexton/gitv'
-Plugin 'jisaacks/GitGutter'
 nnoremap <silent> <leader>gv :Gitv<CR>
 nnoremap <silent> <leader>gV :Gitv!<CR>
+Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_map_keys = 1
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+nmap <Leader>hs <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterRevertHunk
+nmap <Leader>hp <Plug>GitGutterPreviewHunk
+
 
 
 Plugin 'bling/vim-airline'
@@ -67,16 +82,6 @@ let g:EasyMotion_smartcase = 1
 "comments
 Plugin 'vim-scripts/The-NERD-Commenter'
 :map <C-\> ,ci
-
-
-Plugin 'altercation/vim-colors-solarized'
-if has('gui_running')
-  set background=dark
-else
-  set background=dark
-  let g:solarized_termcolors=256
-  let g:solarized_termtrans = 1
-endif
 
 "-------- search
 
@@ -104,6 +109,7 @@ nnoremap [w :lprevious<CR>
 
 
 Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neomru.vim'
 Plugin 'Shougo/vimproc.vim'
 nnoremap <silent> <Leader>ur :Unite -buffer-name=recent -winheight=10 file_mru<cr>
 nnoremap <Leader>ub :Unite -buffer-name=buffers -winheight=10 buffer<cr>
@@ -134,8 +140,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-multiple-cursors'
 
 
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'scrooloose/nerdtree'
 nnoremap <Leader>n :NERDTree<cr>
@@ -149,8 +154,8 @@ Plugin 'xolox/vim-session'
 :let g:session_autoload = 'no'
 let g:session_autosave_periodic = 10
 let g:session_default_to_last = 1
-nnoremap <Leader>ss :SaveSession 
-nnoremap <Leader>so :OpenSession 
+nnoremap <Leader>,SS :SaveSession 
+nnoremap <Leader>,SO :OpenSession 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -298,6 +303,10 @@ imap <C-V>		<c-r>+
 map <S-Insert>		"+gP
 
 :imap jj <Esc>
+:imap ;; <Esc>$a;
+:nnoremap ;; $a;<Esc>
+:imap ,, <Esc>$a,
+:imap <c-l> <esc>la
 
 " save changes
 map ,s :w<CR>
@@ -347,3 +356,4 @@ map <D-V> "+gP
 imap <D-V> <c-r>+
 " ----------------------------- /GENERAL BUTTONS MAPPING ----------------------
 "
+highlight clear SignColumn
