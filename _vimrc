@@ -28,9 +28,13 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5.vim'
 Plugin 'ap/vim-css-color'
-Plugin 'msanders/snipmate.vim'
 Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
+
+Plugin 'msanders/snipmate.vim'
+ino <c-q> <c-r>=TriggerSnippet()<cr>
+snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
+
 
 
 Plugin '907th/vim-auto-save'
@@ -63,8 +67,8 @@ nnoremap <silent> <leader>gv :Gitv<CR>
 nnoremap <silent> <leader>gV :Gitv!<CR>
 Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_map_keys = 1
-nmap [h <Plug>GitGutterPrevHunk
-nmap ]h <Plug>GitGutterNextHunk
+nmap <Leader>hk <Plug>GitGutterPrevHunk
+nmap <Leader>hj <Plug>GitGutterNextHunk
 nmap <Leader>hs <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterRevertHunk
 nmap <Leader>hp <Plug>GitGutterPreviewHunk
@@ -113,12 +117,12 @@ Plugin 'Shougo/neomru.vim'
 Plugin 'Shougo/vimproc.vim'
 nnoremap <silent> <Leader>ur :Unite -buffer-name=recent -winheight=10 file_mru<cr>
 nnoremap <Leader>ub :Unite -buffer-name=buffers -winheight=10 buffer<cr>
-nnoremap <Leader>us :Unite grep:.<CR><C-r><C-w><cr>
+nnoremap <Leader>ug :Unite grep:.<CR><C-r><C-w><cr>
 vnoremap <Leader>us "zy:Unite grep:.<CR><C-r>z<cr>
 let g:unite_source_rec_async_command = 'ack -f --nofilter'
 if executable('ack')
     let g:unite_source_grep_command = 'ack'
-    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -k -H -Q'
+    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -H -Q'
     let g:unite_source_grep_recursive_opt = ''
 endif
 
@@ -140,10 +144,10 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-multiple-cursors'
 
 
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'scrooloose/nerdtree'
-nnoremap <Leader>n :NERDTree<cr>
+nnoremap <Leader>n :NERDTreeToggle<cr>
 nnoremap <Leader>nf :NERDTreeFind<cr>
 nnoremap <Leader>nb :Bookmark<cr>
 
@@ -302,10 +306,13 @@ map <C-V>		"+gP
 imap <C-V>		<c-r>+
 map <S-Insert>		"+gP
 
+" Replace a word from the " bufer withou changing of bufer
+nmap <silent> cp "_cw<C-R>"<Esc>
+
 :imap jj <Esc>
-:imap ;; <Esc>$a;
+:imap ;; <Esc>$a;<Esc>
 :nnoremap ;; $a;<Esc>
-:imap ,, <Esc>$a,
+:imap ,, <Esc>$a,<Esc>
 :imap <c-l> <esc>la
 
 " save changes
@@ -328,7 +335,7 @@ vmap // y/<C-R>"<CR> " search for visually higlightes text
 :map <c-h> <c-w>h
 :imap <c-h> <esc><c-h>
 :map <c-l> <c-w>l
-:imap <c-l> <esc><c-l>
+":imap <c-l> <esc><c-l>
 map <c-_> <c-w>_
 map <c-=> <c-w>=
 imap <c-=> <esc><c-=>
