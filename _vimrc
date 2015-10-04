@@ -87,6 +87,10 @@ let g:EasyMotion_smartcase = 1
 Plugin 'vim-scripts/The-NERD-Commenter'
 :map <C-\> ,ci
 
+
+"docker syntax
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
 "-------- search
 
 Plugin 'kien/ctrlp.vim'
@@ -119,10 +123,11 @@ nnoremap <silent> <Leader>ur :Unite -buffer-name=recent -winheight=10 file_mru<c
 nnoremap <Leader>ub :Unite -buffer-name=buffers -winheight=10 buffer<cr>
 nnoremap <Leader>ug :Unite grep:.<CR><C-r><C-w><cr>
 vnoremap <Leader>us "zy:Unite grep:.<CR><C-r>z<cr>
+vnoremap <Leader>ud "zy:Unite grep:.<CR><C-r>z *=<cr>
 let g:unite_source_rec_async_command = 'ack -f --nofilter'
 if executable('ack')
     let g:unite_source_grep_command = 'ack'
-    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -H -Q'
+    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -H'
     let g:unite_source_grep_recursive_opt = ''
 endif
 
@@ -364,3 +369,6 @@ imap <D-V> <c-r>+
 " ----------------------------- /GENERAL BUTTONS MAPPING ----------------------
 "
 highlight clear SignColumn
+
+" :%!python -m json.tool " format json in file
+
