@@ -31,7 +31,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
 
-Plugin 'msanders/snipmate.vim'
+Plugin 'garbas/snipmate.vim'
 ino <c-q> <c-r>=TriggerSnippet()<cr>
 snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
@@ -39,7 +39,7 @@ snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
 Plugin '907th/vim-auto-save'
 let g:auto_save = 1  " enable AutoSave on Vim startup
-let g:auto_save_in_insert_mode = 0  " do not save while in insert mode"
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 let g:auto_save_silent = 1  " do not display the auto-save notification
 
 Plugin 'altercation/vim-colors-solarized'
@@ -58,6 +58,7 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
+
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gr :Gremove<CR>
 
@@ -96,7 +97,7 @@ Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_max_files=0
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
@@ -143,8 +144,6 @@ highlight SyntasticWarning guibg=#ff9100
 highlight SyntasticError guibg=#ff0000
 
 
-
-
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-multiple-cursors'
 
@@ -170,9 +169,7 @@ nnoremap <Leader>,SO :OpenSession
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-
-
-
+Plugin 'elzr/vim-json'
 
 
 colorscheme solarized
@@ -291,6 +288,12 @@ set autoread
 ":au FocusLost * silent! wa
 "set autowrite
 "set autowriteall
+
+"Save in MacOS buffer
+"You can also use pbcopy/pbpaste command to achieve the same thing.
+"By default copied text appers in '+' or '*'
+set clipboard=unnamed
+
 
 
 " ----------------------------- /VIM SETTINGS --------------------------------
