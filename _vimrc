@@ -30,6 +30,7 @@ Plugin 'othree/html5.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
+Plugin 'nginx.vim'
 
 Plugin 'garbas/snipmate.vim'
 ino <c-q> <c-r>=TriggerSnippet()<cr>
