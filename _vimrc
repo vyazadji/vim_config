@@ -1,4 +1,8 @@
-
+" Update plugins:
+" :PluginUpdate
+"
+" :PluginClean
+"
 let mapleader = ","
 
 "-------------------- VUNDLE ---------------------
@@ -15,7 +19,6 @@ call vundle#begin()
 
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-endwise'
@@ -24,7 +27,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5.vim'
 Plugin 'ap/vim-css-color'
@@ -32,20 +34,22 @@ Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nginx.vim'
 
-Plugin 'garbas/snipmate.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 ino <c-q> <c-r>=TriggerSnippet()<cr>
 snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
 
 
-Plugin '907th/vim-auto-save'
-let g:auto_save = 1  " enable AutoSave on Vim startup
-let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-let g:auto_save_silent = 1  " do not display the auto-save notification
+"Plugin '907th/vim-auto-save'
+"let g:auto_save = 1  " enable AutoSave on Vim startup
+"let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+"let g:auto_save_silent = 1  " do not display the auto-save notification
 
 Plugin 'altercation/vim-colors-solarized'
 if has('gui_running')
-  set background=dark
+  set background=light
 else
   set background=dark
   let g:solarized_termcolors=256
@@ -163,8 +167,8 @@ Plugin 'xolox/vim-session'
 :let g:session_autoload = 'no'
 let g:session_autosave_periodic = 10
 let g:session_default_to_last = 1
-nnoremap <Leader>,SS :SaveSession 
-nnoremap <Leader>,SO :OpenSession 
+nnoremap <Leader>,SS :SaveSession
+nnoremap <Leader>,SO :OpenSession
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -334,7 +338,7 @@ map ,t :tabnew<CR>
 
 " show and replace world under cursor
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
-vmap // y/<C-R>"<CR> " search for visually higlightes text
+"vmap // y/<C-R>"<CR> " search for visually higlightes text
 
 "quick move between windows
 :map <c-j> <c-w>j
