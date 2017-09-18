@@ -170,11 +170,15 @@ let g:session_default_to_last = 1
 nnoremap <Leader>,SS :SaveSession
 nnoremap <Leader>,SO :OpenSession
 
+" For test
+Plugin 'elzr/vim-json'
+Plugin 'pangloss/vim-javascript'
+Plugin 'valloric/youcompleteme'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-Plugin 'elzr/vim-json'
 
 
 colorscheme solarized
