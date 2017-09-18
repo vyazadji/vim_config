@@ -293,14 +293,6 @@ set autoread
 ":au FocusLost * silent! wa
 "set autowrite
 "set autowriteall
-
-"Save in MacOS buffer
-"You can also use pbcopy/pbpaste command to achieve the same thing.
-"By default copied text appers in '+' or '*'
-set clipboard=unnamed
-
-
-
 " ----------------------------- /VIM SETTINGS --------------------------------
 
 
@@ -338,7 +330,7 @@ map ,t :tabnew<CR>
 
 " show and replace world under cursor
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
-"vmap // y/<C-R>"<CR> " search for visually higlightes text
+vmap // y/<C-R>"<CR> " search for visually higlightes text
 
 "quick move between windows
 :map <c-j> <c-w>j
