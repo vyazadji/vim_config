@@ -1,3 +1,7 @@
+"Reload your .vimrc after saving the changes:
+" :source $MYVIMRC
+"
+" Vundle
 " Update plugins:
 " :PluginUpdate
 "
@@ -24,7 +28,6 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'hail2u/vim-css3-syntax'
@@ -47,17 +50,30 @@ snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
 "let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 "let g:auto_save_silent = 1  " do not display the auto-save notification
 
+" -------- Color themes
+Plugin 'flazz/vim-colorschemes'
+Plugin 'chriskempson/base16-vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+
 Plugin 'altercation/vim-colors-solarized'
 if has('gui_running')
-  set background=light
+  "set background=light
+  set background=dark
 else
   set background=dark
   let g:solarized_termcolors=256
   let g:solarized_termtrans = 1
 endif
 
+"colorscheme hybrid
+
+
+"--------- GIT
+
 Plugin 'tpope/vim-fugitive'
 nnoremap <silent> <leader>gs :Gstatus<CR>
+nmap <D-9> :tabnew<CR>:e .<CR> :Gstatus<CR><C-N>dp
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
@@ -76,7 +92,7 @@ let g:gitgutter_map_keys = 1
 nmap <Leader>hk <Plug>GitGutterPrevHunk
 nmap <Leader>hj <Plug>GitGutterNextHunk
 nmap <Leader>hs <Plug>GitGutterStageHunk
-nmap <Leader>hr <Plug>GitGutterRevertHunk
+nmap <Leader>hr <Plug>GitGutterUndoHunk
 nmap <Leader>hp <Plug>GitGutterPreviewHunk
 
 
@@ -85,7 +101,24 @@ Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
 
 Plugin 'Lokaltog/vim-easymotion'
-map <Leader> <Plug>(easymotion-prefix)
+"map <Leader> <Plug>(easymotion-prefix)
+" use other windows also
+"" <Leader>f{char} to move to {char}
+map  <Leader><Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader><Leader>f <Plug>(easymotion-overwin-f)
+" Move to line
+map <Leader><Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
+" Move to word
+"map  <Leader><Leader>w <Plug>(easymotion-bd-w)
+"nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
+" s{char}{char} to move to {char}{char}
+"nmap s <Plug>(easymotion-overwin-f2)
+map <Leader><Leader>s <Plug>(easymotion-overwin-f2)
+nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
+
+Plugin 'haya14busa/incsearch.vim'
+
 
 let g:EasyMotion_smartcase = 1
 
@@ -94,28 +127,48 @@ Plugin 'vim-scripts/The-NERD-Commenter'
 :map <C-\> ,ci
 
 
-"docker syntax
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+"-------- Docker
+Plugin 'ekalinin/dockerfile.vim'
+
+"-------- Scala
+"Plugin 'derekwyatt/vim-scala'
 
 "-------- search
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|node_modules)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard'] "Ignore files in .gitignore
 let g:ctrlp_max_files=0
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
-nnoremap <Leader>f :CtrlP<CR>
-nnoremap <Leader>fb :CtrlPBuffer<CR>
-nnoremap <Leader>fr :CtrlPMRU<CR>
+"let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+let g:ctrlp_extensions = [ 'bookmarkdir']
+"nnoremap <Leader>f :CtrlP<CR>
+"nnoremap <Leader>fb :CtrlPBuffer<CR>
+"nnoremap <Leader>fr :CtrlPMRU<CR>
+nmap <D-E> :CtrlPMRU<CR>
+nmap <D-O> :CtrlPMixed<CR>
+vmap   <D-O> :<C-U>CtrlPMixed<CR>
+nmap <D-B> :CtrlPBuffer<CR>
+nmap <D-D> :CtrlPBookmarkDir<CR>
+
+Plugin 'ivalkeen/vim-ctrlp-tjump'
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
+let g:ctrlp_tjump_only_silent = 1
 
 
 
 Plugin 'mileszs/ack.vim'
 " :LAck the word under the cursor recursively and open the location list.
-nnoremap <Leader>a :sp<CR> :Ack <C-r><C-w><CR>
-vnoremap <Leader>a "zy:sp<CR> :Ack '<C-r>z'<CR>
+nnoremap <Leader>a  :Ack -w <C-r><C-w><CR>
+vnoremap <Leader>a "zy :Ack -w '<C-r>z'<CR>
 " Location list navigation.
 nnoremap ]w :lnext<CR>
 nnoremap [w :lprevious<CR>
@@ -143,22 +196,33 @@ endif
 
 Plugin 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 highlight SyntasticWarning guibg=#ff9100
 highlight SyntasticError guibg=#ff0000
-
+" let g:syntastic_debug=3
+" :mes for showing logs
+" :SyntasticInfo javascript
+" http://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
+" https://medium.com/@bill.turner/quick-dirty-guide-for-using-eslint-with-vim-a20662e6aab2
 
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-multiple-cursors'
 
 
-"Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'scrooloose/nerdtree'
 nnoremap <Leader>n :NERDTreeToggle<cr>
+nnoremap <D-1> :NERDTreeToggle<cr>
 nnoremap <Leader>nf :NERDTreeFind<cr>
 nnoremap <Leader>nb :Bookmark<cr>
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
 Plugin 'vim-misc'
@@ -170,18 +234,44 @@ let g:session_default_to_last = 1
 nnoremap <Leader>,SS :SaveSession
 nnoremap <Leader>,SO :OpenSession
 
+" React + JSX
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
+
+Plugin 'kchmck/vim-coffee-script'
+
 " For test
 Plugin 'elzr/vim-json'
-Plugin 'pangloss/vim-javascript'
 Plugin 'valloric/youcompleteme'
+
+Plugin 'kshenoy/vim-signature'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bufexplorer.zip'
+Plugin 'romainl/vim-qlist'
+
+Plugin 'eugen0329/vim-esearch'
+let g:esearch = {
+  \ 'adapter':    'ack',
+  \ 'backend':    'vim8',
+  \ 'out':        'win',
+  \ 'batch_size': 300,
+  \ 'use':        ['visual', 'hlsearch', 'last'],
+  \}
+"map <c-f>  ,ff
+map <D-F> <Plug>(esearch)
+hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
+
+
+Plugin 'marijnh/tern_for_vim'
+
+
+
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-
-
-colorscheme solarized
 
 "-------------------- /VUNDLE ---------------------
 
@@ -208,6 +298,10 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+"colorscheme solarized
+colorscheme gruvbox
+set guifont=Monaco:h15 noanti
+"set guifont=Menlo:h14
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 
@@ -330,7 +424,16 @@ imap ,s <esc>,sa
 " exit vim without saving any changes
 map ,q :q!<CR>
 
-map ,t :tabnew<CR>
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove 
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+
 
 " show and replace world under cursor
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
