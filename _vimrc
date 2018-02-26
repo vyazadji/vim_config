@@ -99,19 +99,29 @@ nmap <Leader>hp <Plug>GitGutterPreviewHunk
 
 Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
+" Set this. Airline will handle the rest for ALE plugin.
+let g:airline#extensions#ale#enabled = 1
 
 Plugin 'Lokaltog/vim-easymotion'
-"map <Leader> <Plug>(easymotion-prefix)
+" Move to word
+map  <Leader>w <Plug>(easymotion-w)
+map <Leader>W <Plug>(easymotion-W)
+"nmap <Leader>w <Plug>(easymotion-overwin-w)
+map  <Leader>e <Plug>(easymotion-e)
+nmap <Leader>E <Plug>(easymotion-E)
+"nmap <Leader>e <Plug>(easymotion-overwin-e)
+map  <Leader>b <Plug>(easymotion-b)
+nmap <Leader>B <Plug>(easymotion-B)
+"nmap <Leader>b <Plug>(easymotion-overwin-b)
 " use other windows also
 "" <Leader>f{char} to move to {char}
 map  <Leader><Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader><Leader>f <Plug>(easymotion-overwin-f)
+map <Leader><Leader>t <Plug>(easymotion-bd-t)  
+nmap <Leader><Leader>t <Plug>(easymotion-overwin-t)
 " Move to line
 map <Leader><Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
-" Move to word
-"map  <Leader><Leader>w <Plug>(easymotion-bd-w)
-"nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
 " s{char}{char} to move to {char}{char}
 "nmap s <Plug>(easymotion-overwin-f2)
 map <Leader><Leader>s <Plug>(easymotion-overwin-f2)
@@ -193,25 +203,33 @@ endif
 
 "-------- /search
 
+"---------- Syntax check
 
-Plugin 'scrooloose/syntastic'
-let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+Plugin 'w0rp/ale'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_sign_error =  "✗"
+let g:ale_sign_warning = "⚠"
 
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-highlight SyntasticWarning guibg=#ff9100
-highlight SyntasticError guibg=#ff0000
-" let g:syntastic_debug=3
-" :mes for showing logs
-" :SyntasticInfo javascript
-" http://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
-" https://medium.com/@bill.turner/quick-dirty-guide-for-using-eslint-with-vim-a20662e6aab2
+"Plugin 'scrooloose/syntastic'
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_loc_list_height = 5
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+
+"let g:syntastic_error_symbol = "✗"
+"let g:syntastic_warning_symbol = "⚠"
+"highlight SyntasticWarning guibg=#ff9100
+"highlight SyntasticError guibg=#ff0000
+
+"" let g:syntastic_debug=3
+"" :mes for showing logs
+"" :SyntasticInfo javascript
+"" http://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
+"" https://medium.com/@bill.turner/quick-dirty-guide-for-using-eslint-with-vim-a20662e6aab2
 
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-multiple-cursors'
@@ -243,11 +261,9 @@ Plugin 'kchmck/vim-coffee-script'
 
 " For test
 Plugin 'elzr/vim-json'
-Plugin 'valloric/youcompleteme'
 
 Plugin 'kshenoy/vim-signature'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'bufexplorer.zip'
 Plugin 'romainl/vim-qlist'
 
 Plugin 'eugen0329/vim-esearch'
@@ -265,9 +281,26 @@ hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
 
 Plugin 'marijnh/tern_for_vim'
 
+"---------- COMPLETE
+Plugin 'ervandew/supertab'
+Plugin 'valloric/youcompleteme'
+" Track the engine.
+"https://brigade.engineering/sharpen-your-vim-with-snippets-767b693886db
+Plugin 'SirVer/ultisnips'
+" YouCompleteMe and UltiSnips compatibility, with the helper of supertab
+" (via http://stackoverflow.com/a/22253548/1626737)
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+let g:SuperTabCrMapping                = 0
+let g:UltiSnipsExpandTrigger           = '<tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+let g:ycm_key_list_select_completion   = ['<c-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-k>', '<C-p>', '<Up>']
 
 
-
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+"---------- /COMPLETE
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
