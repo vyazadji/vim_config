@@ -68,6 +68,8 @@ endif
 
 "colorscheme hybrid
 
+Plugin 'rakr/vim-one'
+let g:airline_theme='one'
 
 "--------- GIT
 
@@ -99,8 +101,17 @@ nmap <Leader>hp <Plug>GitGutterPreviewHunk
 
 Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
-" Set this. Airline will handle the rest for ALE plugin.
-let g:airline#extensions#ale#enabled = 1
+" Show tabs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" Don't show branch info - it takes to much space
+let g:airline#extensions#branch#enabled = 0
+" Don't show info about changed lines
+"let g:airline#extensions#hunks#enabled = 0
+
+
 
 Plugin 'Lokaltog/vim-easymotion'
 " Move to word
@@ -168,12 +179,6 @@ vmap   <D-O> :<C-U>CtrlPMixed<CR>
 nmap <D-B> :CtrlPBuffer<CR>
 nmap <D-D> :CtrlPBookmarkDir<CR>
 
-Plugin 'ivalkeen/vim-ctrlp-tjump'
-nnoremap <c-]> :CtrlPtjump<cr>
-vnoremap <c-]> :CtrlPtjumpVisual<cr>
-let g:ctrlp_tjump_only_silent = 1
-
-
 
 Plugin 'mileszs/ack.vim'
 " :LAck the word under the cursor recursively and open the location list.
@@ -201,6 +206,7 @@ if executable('ack')
 endif
 
 
+
 "-------- /search
 
 "---------- Syntax check
@@ -212,24 +218,27 @@ let g:ale_linters = {
 let g:ale_sign_error =  "✗"
 let g:ale_sign_warning = "⚠"
 
-"Plugin 'scrooloose/syntastic'
-"let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
 
-"let g:syntastic_error_symbol = "✗"
-"let g:syntastic_warning_symbol = "⚠"
-"highlight SyntasticWarning guibg=#ff9100
-"highlight SyntasticError guibg=#ff0000
+" Enable completion where available.
+"let g:ale_completion_enabled = 1
 
-"" let g:syntastic_debug=3
-"" :mes for showing logs
-"" :SyntasticInfo javascript
-"" http://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
-"" https://medium.com/@bill.turner/quick-dirty-guide-for-using-eslint-with-vim-a20662e6aab2
+
+" After this is configured, :ALEFix will try and fix your JS code
+let g:ale_fixers = {
+\   'javascript': ['prettier','eslint'],
+\}
+"\   'javascript': ['eslint'],
+"\   'javascript': ['prettier', 'eslint'],
+"\   'javascript': ['prettier_eslint'],
+" Set this setting if you want to fix files automatically on save.
+let g:ale_fix_on_save = 0
+nmap <Leader>p <Plug>(ale_fix)
+
+"Plugin 'skywind3000/asyncrun.vim'
+
+"---------- /Syntax check
 
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-multiple-cursors'
@@ -281,9 +290,21 @@ hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
 
 Plugin 'marijnh/tern_for_vim'
 
+Plugin 'yggdroot/indentline'
+
 "---------- COMPLETE
 Plugin 'ervandew/supertab'
 Plugin 'valloric/youcompleteme'
+" Don't show YCM's preview window [ I find it really annoying ]
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+
+autocmd FileType javascript nmap <buffer> <C-]> :YcmCompleter GoTo<CR>
+let g:ycm_enable_diagnostic_signs = 0
+
+" For debug
+"let g:ycm_server_keep_logfiles = 1
+"let g:ycm_server_log_level = 'debug'
 " Track the engine.
 "https://brigade.engineering/sharpen-your-vim-with-snippets-767b693886db
 Plugin 'SirVer/ultisnips'
@@ -301,6 +322,10 @@ let g:ycm_key_list_previous_completion = ['<c-k>', '<C-p>', '<Up>']
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 "---------- /COMPLETE
+"
+
+" https://vimawesome.com/plugin/dash-vim
+Plugin 'rizzatti/dash.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -443,7 +468,7 @@ imap <C-V>		<c-r>+
 map <S-Insert>		"+gP
 
 " Replace a word from the " bufer withou changing of bufer
-nmap <silent> cp "_cw<C-R>"<Esc>
+nmap <silent> cp "_ce<C-R>"<Esc>
 
 :imap jj <Esc>
 :imap ;; <Esc>$a;<Esc>
@@ -511,4 +536,6 @@ imap <D-V> <c-r>+
 highlight clear SignColumn
 
 " :%!python -m json.tool " format json in file
+"
+set exrc
 
