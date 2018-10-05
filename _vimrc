@@ -37,11 +37,13 @@ Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nginx.vim'
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-ino <c-q> <c-r>=TriggerSnippet()<cr>
-snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+"ino <c-q> <c-r>=TriggerSnippet()<cr>
+"snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
+
+
 
 
 
@@ -98,6 +100,7 @@ nmap <Leader>hr <Plug>GitGutterUndoHunk
 nmap <Leader>hp <Plug>GitGutterPreviewHunk
 
 
+"--------- /GIT
 
 Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
@@ -175,7 +178,7 @@ let g:ctrlp_extensions = [ 'bookmarkdir']
 "nnoremap <Leader>fr :CtrlPMRU<CR>
 nmap <D-E> :CtrlPMRU<CR>
 nmap <D-O> :CtrlPMixed<CR>
-vmap   <D-O> :<C-U>CtrlPMixed<CR>
+vmap <D-O> :<C-U>CtrlPMixed<CR>
 nmap <D-B> :CtrlPBuffer<CR>
 nmap <D-D> :CtrlPBookmarkDir<CR>
 
@@ -241,7 +244,20 @@ nmap <Leader>p <Plug>(ale_fix)
 "---------- /Syntax check
 
 Plugin 'ntpeters/vim-better-whitespace'
+
+
 Plugin 'terryma/vim-multiple-cursors'
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-m>'
+"let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-m>'
+"let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-m>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 
 Plugin 'scrooloose/nerdtree'
@@ -290,7 +306,7 @@ hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
 
 Plugin 'marijnh/tern_for_vim'
 
-Plugin 'yggdroot/indentline'
+"Plugin 'yggdroot/indentline'
 
 "---------- COMPLETE
 Plugin 'ervandew/supertab'
@@ -325,7 +341,7 @@ Plugin 'honza/vim-snippets'
 "
 
 " https://vimawesome.com/plugin/dash-vim
-Plugin 'rizzatti/dash.vim'
+"Plugin 'rizzatti/dash.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -356,8 +372,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-"colorscheme solarized
-colorscheme gruvbox
+colorscheme solarized
+"colorscheme OceanicNext
+"colorscheme gruvbox
 set guifont=Monaco:h15 noanti
 "set guifont=Menlo:h14
 
@@ -455,8 +472,8 @@ set autoread
 " ----------------------------- GENERAL BUTTONS MAPPING ----------------------
 
 " CTRL-X and SHIFT-Del are Cut
-vnoremap <C-X> "+x
-vnoremap <S-Del> "+x
+"vnoremap <C-X> "+x
+"vnoremap <S-Del> "+x
 
 " CTRL-C and CTRL-Insert are Copy
 vnoremap <C-C> "+y
