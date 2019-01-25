@@ -37,21 +37,6 @@ Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nginx.vim'
 
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
-"ino <c-q> <c-r>=TriggerSnippet()<cr>
-"snor <c-q> <esc>i<right><c-r>=TriggerSnippet()<cr>
-
-
-
-
-
-"Plugin '907th/vim-auto-save'
-"let g:auto_save = 1  " enable AutoSave on Vim startup
-"let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-"let g:auto_save_silent = 1  " do not display the auto-save notification
-
 " -------- Color themes
 Plugin 'flazz/vim-colorschemes'
 Plugin 'chriskempson/base16-vim'
@@ -115,7 +100,6 @@ let g:airline#extensions#branch#enabled = 0
 "let g:airline#extensions#hunks#enabled = 0
 
 
-
 Plugin 'Lokaltog/vim-easymotion'
 " Move to word
 map  <Leader>w <Plug>(easymotion-w)
@@ -131,7 +115,7 @@ nmap <Leader>B <Plug>(easymotion-B)
 "" <Leader>f{char} to move to {char}
 map  <Leader><Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader><Leader>f <Plug>(easymotion-overwin-f)
-map <Leader><Leader>t <Plug>(easymotion-bd-t)  
+map <Leader><Leader>t <Plug>(easymotion-bd-t)
 nmap <Leader><Leader>t <Plug>(easymotion-overwin-t)
 " Move to line
 map <Leader><Leader>L <Plug>(easymotion-bd-jk)
@@ -183,16 +167,6 @@ nmap <D-B> :CtrlPBuffer<CR>
 nmap <D-D> :CtrlPBookmarkDir<CR>
 
 
-Plugin 'mileszs/ack.vim'
-" :LAck the word under the cursor recursively and open the location list.
-nnoremap <Leader>a  :Ack -w <C-r><C-w><CR>
-vnoremap <Leader>a "zy :Ack -w '<C-r>z'<CR>
-" Location list navigation.
-nnoremap ]w :lnext<CR>
-nnoremap [w :lprevious<CR>
-
-
-
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim'
 Plugin 'Shougo/vimproc.vim'
@@ -220,6 +194,8 @@ let g:ale_linters = {
 \}
 let g:ale_sign_error =  "✗"
 let g:ale_sign_warning = "⚠"
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
 
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
@@ -238,8 +214,6 @@ let g:ale_fixers = {
 " Set this setting if you want to fix files automatically on save.
 let g:ale_fix_on_save = 0
 nmap <Leader>p <Plug>(ale_fix)
-
-"Plugin 'skywind3000/asyncrun.vim'
 
 "---------- /Syntax check
 
@@ -306,8 +280,6 @@ hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
 
 Plugin 'marijnh/tern_for_vim'
 
-"Plugin 'yggdroot/indentline'
-
 "---------- COMPLETE
 Plugin 'ervandew/supertab'
 Plugin 'valloric/youcompleteme'
@@ -315,7 +287,12 @@ Plugin 'valloric/youcompleteme'
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 
-autocmd FileType javascript nmap <buffer> <C-]> :YcmCompleter GoTo<CR>
+let g:ycm_goto_buffer_command = 'split-or-existing-window'
+autocmd FileType javascript nmap <buffer> <C-]> :tab  YcmCompleter GoTo<CR>
+autocmd FileType javascript nmap <buffer> <leader>gv :rightbelow vertical YcmCompleter GoTo<CR>
+autocmd FileType javascript nmap <buffer> <leader>gs :aboveleft YcmCompleter GoTo<CR>
+autocmd FileType javascript nmap <buffer> <leader>gt :tab YcmCompleter GoTo<CR>
+
 let g:ycm_enable_diagnostic_signs = 0
 
 " For debug
