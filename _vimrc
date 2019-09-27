@@ -63,8 +63,8 @@ let g:airline_theme='one'
 
 Plugin 'tpope/vim-fugitive'
 nnoremap <silent> <leader>gs :Gstatus<CR>
-nmap <D-9> :tabnew<CR>:e .<CR> :Gstatus<CR><C-N>dp
-nnoremap <silent> <leader>gd :Gdiff<CR>
+nmap <D-9> :tabnew %<CR>:Gstatus<CR><c-w>o G [[
+nnoremap <silent> <leader>gd :Gvdiffsplit!<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
@@ -79,11 +79,11 @@ nnoremap <silent> <leader>gv :Gitv<CR>
 nnoremap <silent> <leader>gV :Gitv!<CR>
 Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_map_keys = 1
-nmap <Leader>hk <Plug>GitGutterPrevHunk
-nmap <Leader>hj <Plug>GitGutterNextHunk
-nmap <Leader>hs <Plug>GitGutterStageHunk
-nmap <Leader>hr <Plug>GitGutterUndoHunk
-nmap <Leader>hp <Plug>GitGutterPreviewHunk
+nmap <Leader>hk <Plug>(GitGutterPrevHunk)
+nmap <Leader>hj <Plug>(GitGutterNextHunk)
+nmap <Leader>hs <Plug>(GitGutterStageHunk)
+nmap <Leader>hr <Plug>(GitGutterUndoHunk)
+nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 
 
 "--------- /GIT
