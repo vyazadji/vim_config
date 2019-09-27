@@ -29,7 +29,8 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'vim-ruby/vim-ruby'
+Plugin 'christoomey/vim-sort-motion'
+"Plugin 'vim-ruby/vim-ruby'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5.vim'
 Plugin 'ap/vim-css-color'
@@ -90,9 +91,9 @@ nmap <Leader>hp <Plug>GitGutterPreviewHunk
 Plugin 'bling/vim-airline'
 let g:airline_detect_whitespace=0
 " Show tabs
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#show_buffers = 0
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Don't show branch info - it takes to much space
 let g:airline#extensions#branch#enabled = 0
@@ -167,21 +168,32 @@ nmap <D-B> :CtrlPBuffer<CR>
 nmap <D-D> :CtrlPBookmarkDir<CR>
 
 
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neomru.vim'
-Plugin 'Shougo/vimproc.vim'
-nnoremap <silent> <Leader>ur :Unite -buffer-name=recent -winheight=10 file_mru<cr>
-nnoremap <Leader>ub :Unite -buffer-name=buffers -winheight=10 buffer<cr>
-nnoremap <Leader>ug :Unite grep:.<CR><C-r><C-w><cr>
-vnoremap <Leader>us "zy:Unite grep:.<CR><C-r>z<cr>
-vnoremap <Leader>ud "zy:Unite grep:.<CR><C-r>z *=<cr>
-let g:unite_source_rec_async_command = 'ack -f --nofilter'
-if executable('ack')
-    let g:unite_source_grep_command = 'ack'
-    let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -H'
-    let g:unite_source_grep_recursive_opt = ''
-endif
+"Plugin 'Shougo/unite.vim'
+"Plugin 'Shougo/neomru.vim'
+"Plugin 'Shougo/vimproc.vim'
+"nnoremap <silent> <Leader>ur :Unite -buffer-name=recent -winheight=10 file_mru<cr>
+"nnoremap <Leader>ub :Unite -buffer-name=buffers -winheight=10 buffer<cr>
+"nnoremap <Leader>ug :Unite grep:.<CR><C-r><C-w><cr>
+"vnoremap <Leader>us "zy:Unite grep:.<CR><C-r>z<cr>
+"vnoremap <Leader>ud "zy:Unite grep:.<CR><C-r>z *=<cr>
+"let g:unite_source_rec_async_command = 'ack -f --nofilter'
+"if executable('ack')
+    "let g:unite_source_grep_command = 'ack'
+    "let g:unite_source_grep_default_opts = '-i --no-heading  --no-color -H'
+    "let g:unite_source_grep_recursive_opt = ''
+"endif
 
+Plugin 'eugen0329/vim-esearch'
+let g:esearch = {
+  \ 'adapter':    'ack',
+  \ 'backend':    'vim8',
+  \ 'out':        'win',
+  \ 'batch_size': 300,
+  \ 'use':        ['visual', 'hlsearch', 'last'],
+  \}
+"map <c-f>  ,ff
+map <D-F> <Plug>(esearch)
+hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
 
 
 "-------- /search
@@ -258,24 +270,12 @@ let g:jsx_ext_required = 0
 
 Plugin 'kchmck/vim-coffee-script'
 
-" For test
 Plugin 'elzr/vim-json'
 
-Plugin 'kshenoy/vim-signature'
+Plugin 'kshenoy/vim-signature' "plugin to place, toggle and display marks.
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'romainl/vim-qlist'
 
-Plugin 'eugen0329/vim-esearch'
-let g:esearch = {
-  \ 'adapter':    'ack',
-  \ 'backend':    'vim8',
-  \ 'out':        'win',
-  \ 'batch_size': 300,
-  \ 'use':        ['visual', 'hlsearch', 'last'],
-  \}
-"map <c-f>  ,ff
-map <D-F> <Plug>(esearch)
-hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
 
 
 Plugin 'marijnh/tern_for_vim'
@@ -296,6 +296,7 @@ autocmd FileType javascript nmap <buffer> <leader>gt :tab YcmCompleter GoTo<CR>
 let g:ycm_enable_diagnostic_signs = 0
 
 " For debug
+" :YcmDebugInfo
 "let g:ycm_server_keep_logfiles = 1
 "let g:ycm_server_log_level = 'debug'
 " Track the engine.
@@ -531,5 +532,8 @@ highlight clear SignColumn
 
 " :%!python -m json.tool " format json in file
 "
+"format xml
+" :1,$!xmllint --format --recover - 2>/dev/null
+
 set exrc
 
