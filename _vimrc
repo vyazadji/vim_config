@@ -29,7 +29,6 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'christoomey/vim-sort-motion'
 "Plugin 'vim-ruby/vim-ruby'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5.vim'
@@ -37,6 +36,13 @@ Plugin 'ap/vim-css-color'
 Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nginx.vim'
+
+" -------- Sortging
+" gs - default mapping
+Plugin 'christoomey/vim-sort-motion'
+map gs} vi}gs" sorting inside {}
+map gs] vi]gs" sorting inside []
+map gs) vi]gs" sorting inside ()
 
 " -------- Color themes
 Plugin 'flazz/vim-colorschemes'
@@ -58,6 +64,24 @@ endif
 
 Plugin 'rakr/vim-one'
 let g:airline_theme='one'
+
+"Plugin 'inkarkat/vim-mark' "Works but with errors in console
+Plugin 't9md/vim-quickhl'
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+
+nmap <Space>w <Plug>(quickhl-manual-this-whole-word)
+xmap <Space>w <Plug>(quickhl-manual-this-whole-word)
+
+nmap <Space>c <Plug>(quickhl-manual-clear)
+vmap <Space>c <Plug>(quickhl-manual-clear)
+
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+
+nmap <Space>j <Plug>(quickhl-cword-toggle)
+nmap <Space>] <Plug>(quickhl-tag-toggle)
+map H <Plug>(operator-quickhl-manual-this-motion)
 
 "--------- GIT
 
@@ -247,7 +271,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 
 Plugin 'scrooloose/nerdtree'
-nnoremap <Leader>n :NERDTreeToggle<cr>
+"nnoremap <Leader>n :NERDTreeToggle<cr>
 nnoremap <D-1> :NERDTreeToggle<cr>
 nnoremap <Leader>nf :NERDTreeFind<cr>
 nnoremap <Leader>nb :Bookmark<cr>
@@ -291,7 +315,10 @@ let g:ycm_goto_buffer_command = 'split-or-existing-window'
 autocmd FileType javascript nmap <buffer> <C-]> :tab  YcmCompleter GoTo<CR>
 autocmd FileType javascript nmap <buffer> <leader>gv :rightbelow vertical YcmCompleter GoTo<CR>
 autocmd FileType javascript nmap <buffer> <leader>gs :aboveleft YcmCompleter GoTo<CR>
-autocmd FileType javascript nmap <buffer> <leader>gt :tab YcmCompleter GoTo<CR>
+"autocmd FileType javascript nmap <buffer> <leader>gt :tab YcmCompleter GoTo<CR>
+autocmd FileType javascript nmap <buffer> <leader>gt :YcmCompleter GetType<CR>
+autocmd FileType javascript nmap <buffer> <leader>gr :tab YcmCompleter GoToReferences<CR>
+autocmd FileType javascript nmap <buffer> <leader>gn :YcmCompleter RefactorRename<CR> "need to fix
 
 let g:ycm_enable_diagnostic_signs = 0
 
