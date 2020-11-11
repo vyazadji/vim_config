@@ -29,20 +29,22 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-"Plugin 'vim-ruby/vim-ruby'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'tmhedberg/matchit'
 Plugin 'Raimondi/delimitMate'
-Plugin 'nginx.vim'
+"Plugin 'nginx.vim'
 
 " -------- Sortging
 " gs - default mapping
 Plugin 'christoomey/vim-sort-motion'
-map gs} vi}gs" sorting inside {}
-map gs] vi]gs" sorting inside []
-map gs) vi]gs" sorting inside ()
+map sr} vi}gs" sorting inside {}
+map sr] vi]gs" sorting inside []
+map sr) vi]gs" sorting inside ()
+
+" -------- Highlight
+" Plugin 'yuezk/vim-js'
 
 " -------- Color themes
 Plugin 'flazz/vim-colorschemes'
@@ -65,7 +67,6 @@ endif
 Plugin 'rakr/vim-one'
 let g:airline_theme='one'
 
-"Plugin 'inkarkat/vim-mark' "Works but with errors in console
 Plugin 't9md/vim-quickhl'
 nmap <Space>m <Plug>(quickhl-manual-this)
 xmap <Space>m <Plug>(quickhl-manual-this)
@@ -157,14 +158,12 @@ let g:EasyMotion_smartcase = 1
 
 "comments
 Plugin 'vim-scripts/The-NERD-Commenter'
+let g:NERDSpaceDelims = 1
 :map <C-\> ,ci
 
 
 "-------- Docker
 Plugin 'ekalinin/dockerfile.vim'
-
-"-------- Scala
-"Plugin 'derekwyatt/vim-scala'
 
 "-------- search
 
@@ -216,7 +215,7 @@ let g:esearch = {
   \ 'use':        ['visual', 'hlsearch', 'last'],
   \}
 "map <c-f>  ,ff
-map <D-F> <Plug>(esearch)
+"map <D-F> <Plug>(esearch)
 hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
 
 
@@ -380,8 +379,11 @@ set expandtab
 colorscheme solarized
 "colorscheme OceanicNext
 "colorscheme gruvbox
-set guifont=Monaco:h15 noanti
+"set guifont=Monaco:h15 noanti
+set guifont=JetBrainsMono-Regular:h16
+set linespace=1
 "set guifont=Menlo:h14
+"
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 
@@ -506,8 +508,8 @@ map ,q :q!<CR>
 
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tc :tabp<cr>:+tabclose<cr>
+map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -561,6 +563,14 @@ highlight clear SignColumn
 "
 "format xml
 " :1,$!xmllint --format --recover - 2>/dev/null
+"
+"
+" ----------------------------- FORMATTING LOGS ---------------------
+" format logs from Kibana
+:map <leader>flog :%s/\\"/"/g<cr>:%s/"{/{/g<cr>:%s/}"/}/g<cr>:%!python -m json.tool<CR>:set filetype=javascript<cr>
+:map <leader>fjs :%!~/.pyenv/shims/js-beautify<cr>:set filetype=javascript<cr>
+
+" ----------------------------- /FORMATTING LOGS ---------------------
 
 set exrc
 
